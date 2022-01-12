@@ -6,7 +6,6 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.RunSwerveJoystick;
 import frc.robot.math.SwerveCalcs;
 import frc.robot.modules.SwerveCombo;
 
@@ -60,16 +59,26 @@ public class Chassis extends SubsystemBase {
     
 
 
-    public void runSwerve(double fwd, double str, double rot) throws Exception {
+    public void runSwerve(double fwd, double str, double rot) {
 
         new SwerveCalcs(fwd, str, rot);
 
         double ratio = 1.0;
 
-        double speedFL = getSpeed(fwd, str, rot, 0);
-        double speedBL = getSpeed(fwd, str, rot, 1);
-        double speedFR = getSpeed(fwd, str, rot, 2);
-        double speedBR = getSpeed(fwd, str, rot, 3);
+        double speedFL = 0;
+        double speedBL = 0;
+        double speedFR = 0;
+        double speedBR = 0;
+
+        try {
+            speedFL = getSpeed(fwd, str, rot, 0);
+            speedBL = getSpeed(fwd, str, rot, 1);
+            speedFR = getSpeed(fwd, str, rot, 2);
+            speedBR = getSpeed(fwd, str, rot, 3);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         double maxWheelSpeed = max(max(speedFL, speedBL), max(speedFR, speedBR));
 
@@ -79,10 +88,11 @@ public class Chassis extends SubsystemBase {
             ratio = 1.0;
         }
 
-        this.comboFL.passArgs(ratio*speedFL, getAngle(fwd, str, rot, 0));
-        this.comboBL.passArgs(ratio*speedBL, getAngle(fwd, str, rot, 1));
-        this.comboFR.passArgs(ratio*speedFR, getAngle(fwd, str, rot, 2));
-        this.comboBR.passArgs(ratio*speedBR, getAngle(fwd, str, rot, 3));
+
+        this.comboFL.passArgs(ratio * speedFL, getAngle(fwd, str, rot, 0));
+        this.comboBL.passArgs(ratio * speedBL, getAngle(fwd, str, rot, 1));
+        this.comboFR.passArgs(ratio * speedFR, getAngle(fwd, str, rot, 2));
+        this.comboBR.passArgs(ratio * speedBR, getAngle(fwd, str, rot, 3));
 
 
 

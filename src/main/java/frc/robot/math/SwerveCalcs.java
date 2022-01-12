@@ -66,9 +66,11 @@ public class SwerveCalcs { // Runs the math needed for schmoving
 
     }
 
-    public static double getAngle(double forward_input, double strafe_input, double rot_input, int position) throws Exception { // position 0 1 2 3 referring to FL BL FR BR
+    public static double getAngle(double forward_input, double strafe_input, double rot_input, int position) { // position 0 1 2 3 referring to FL BL FR BR
 
-        double tempAngle;
+        // Go back to throwing exception? Must experiment
+
+        double tempAngle = 0;
 
         updateVals(forward_input, strafe_input, rot_input);
 
@@ -89,7 +91,7 @@ public class SwerveCalcs { // Runs the math needed for schmoving
             double tempSpeedStr = strafe_speed + rot_added_speed*Math.sin(alpha);
             tempAngle = atan2(tempSpeedStr, tempSpeedFwd);
         } else {
-            throw new Exception("The angle was not initialized with a proper slot.");
+            System.out.println("Not a valid angle!");
         }
 
         return tempAngle;
