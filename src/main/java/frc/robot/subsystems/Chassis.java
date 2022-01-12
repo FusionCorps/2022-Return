@@ -16,20 +16,20 @@ import static java.lang.Double.max;
 public class Chassis extends SubsystemBase {
     
 
-    WPI_TalonFX drive0 = new WPI_TalonFX(3);
-    WPI_TalonFX drive1 = new WPI_TalonFX(2);
-    WPI_TalonFX drive2 = new WPI_TalonFX(7);
-    WPI_TalonFX drive3 = new WPI_TalonFX(0);
+    WPI_TalonFX drive0 = new WPI_TalonFX(Constants.DRIVE_FL_ID);
+    WPI_TalonFX drive1 = new WPI_TalonFX(Constants.DRIVE_BL_ID);
+    WPI_TalonFX drive2 = new WPI_TalonFX(Constants.DRIVE_FR_ID);
+    WPI_TalonFX drive3 = new WPI_TalonFX(Constants.DRIVE_BR_ID);
 
-    WPI_TalonFX axis0 = new WPI_TalonFX(4);
-    WPI_TalonFX axis1 = new WPI_TalonFX(6);
-    WPI_TalonFX axis2 = new WPI_TalonFX(1);
-    WPI_TalonFX axis3 = new WPI_TalonFX(5);
+    WPI_TalonFX axis0 = new WPI_TalonFX(Constants.AXIS_FL_ID);
+    WPI_TalonFX axis1 = new WPI_TalonFX(Constants.AXIS_BL_ID);
+    WPI_TalonFX axis2 = new WPI_TalonFX(Constants.AXIS_FR_ID);
+    WPI_TalonFX axis3 = new WPI_TalonFX(Constants.AXIS_BR_ID);
 
-    CANCoder coder0 = new CANCoder(12); // FL
-    CANCoder coder1 = new CANCoder(10); // BL
-    CANCoder coder2 = new CANCoder(11); // FR
-    CANCoder coder3 = new CANCoder(13); // BR
+    CANCoder coder0 = new CANCoder(Constants.CODER_FL_ID); // FL
+    CANCoder coder1 = new CANCoder(Constants.CODER_BL_ID); // BL
+    CANCoder coder2 = new CANCoder(Constants.CODER_FR_ID); // FR
+    CANCoder coder3 = new CANCoder(Constants.CODER_BR_ID); // BR
 
 
     public SwerveCombo comboFL;

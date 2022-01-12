@@ -70,6 +70,11 @@ public class SwerveCalcs { // Runs the math needed for schmoving
 
         // Go back to throwing exception? Must experiment
 
+        // 0 - FL
+        // 1 - BL
+        // 2 - FR
+        // 3 - BR
+
         double tempAngle = 0;
 
         updateVals(forward_input, strafe_input, rot_input);
