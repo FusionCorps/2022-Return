@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.auton.AutonBasic;
+import frc.robot.commands.chassis.ChassisDriveAuton;
 
 
 import static frc.robot.RobotContainer.mChassis;
@@ -21,7 +23,7 @@ import static frc.robot.RobotContainer.mChassis;
 public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
-  private Command m_autonomousCommand;
+  private Command m_autonomousCommand = new AutonBasic(mChassis);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -32,6 +34,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+
   }
 
   /**
@@ -60,19 +64,19 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-//    m_autonomousCommand = new ResetGyro(mChassis);
-//
-//    /*
-//     * String autoSelected = SmartDashboard.getString("Auto Selector",
-//     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-//     * = new MyAutoCommand(); break; case "Default Auto": default:
-//     * autonomousCommand = new ExampleCommand(); break; }
-//     */
-//
-//    // schedule the autonomous command (example)
-//    if (m_autonomousCommand != null) {
-//      m_autonomousCommand.schedule();
-//    }
+    m_autonomousCommand = new AutonBasic(mChassis);
+
+    /*
+     * String autoSelected = SmartDashboard.getString("Auto Selector",
+     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
+     * = new MyAutoCommand(); break; case "Default Auto": default:
+     * autonomousCommand = new ExampleCommand(); break; }
+     */
+
+    // schedule the autonomous command (example)
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
+    }
   }
 
   /** This function is called periodically during autonomous. */
@@ -87,9 +91,9 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-//    if (m_autonomousCommand != null) {
-//      m_autonomousCommand.cancel();
-//    }
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
   }
 
   /** This function is called periodically during operator control. */

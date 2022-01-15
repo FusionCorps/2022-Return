@@ -5,19 +5,30 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.math.SigmoidGenerator;
 import frc.robot.subsystems.Chassis;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import static frc.robot.RobotContainer.mController;
-import static java.lang.Math.*;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 import static java.lang.StrictMath.PI;
 
-public class RunFieldCentricSwerve extends CommandBase {
-
+public class FieldCentricRecord extends CommandBase {
     Chassis mChassis;
 
-    double tx = 0;
+    FileWriter cWriter;
 
-    public RunFieldCentricSwerve(Chassis chassis) {
+    public FieldCentricRecord(Chassis chassis) {
         mChassis = chassis;
         this.addRequirements(mChassis);
+
+        try {
+            cWriter = new FileWriter(new File("/home/lvuser/recording.csv"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private SlewRateLimiter fwdLimiter = new SlewRateLimiter(4.5);
@@ -34,10 +45,19 @@ public class RunFieldCentricSwerve extends CommandBase {
         mChassis.comboBR.zero();
         mChassis.comboFL.zero();
         mChassis.comboBL.zero();
+
+        try {
+            cWriter = new FileWriter("/home/lvuser/recording.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void execute() {
+
+        mChassis.feedAll();
 
         angle = -(mChassis.ahrs.getAngle() % 360);
 
@@ -56,29 +76,20 @@ public class RunFieldCentricSwerve extends CommandBase {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-
-        if (mChassis.aiming) {
-            tx = mChassis.limelightTable.getEntry("tx").getDouble(0.0);
-
-
-
-            try {
-                mChassis.runSwerve(fwdLimiter.calculate(axis1*cos(angle/360*(2*PI)) + axis0*sin(angle/360*(2*PI))),
-                        strLimiter.calculate(axis1*sin(angle/360*(2*PI)) - axis0*cos(angle/360*(2*PI))),
-                        0.0365*tx + (tx/abs(tx))*0.01);
-            } catch (Exception e) {
-            }
-
-            System.out.println(0.165*tx + (tx/abs(tx))*0.075);
-
-        } else {
-            try {
-                mChassis.runSwerve(fwdLimiter.calculate(axis1*cos(angle/360*(2*PI)) + axis0*sin(angle/360*(2*PI))),
-                        strLimiter.calculate(axis1*sin(angle/360*(2*PI)) - axis0*cos(angle/360*(2*PI))),
-                        rotLimiter.calculate(mController.getRawAxis(4)));
-            } catch (Exception e) {
-            }
+        try {
+            mChassis.runSwerve(fwdLimiter.calculate(axis1*cos(angle/360*(2*PI)) + axis0*sin(angle/360*(2*PI))),
+                    strLimiter.calculate(axis1*sin(angle/360*(2*PI)) - axis0*cos(angle/360*(2*PI))),
+                    rotLimiter.calculate(mController.getRawAxis(4)));
+        } catch (Exception e) {
         }
+//        System.out.println("Trying to drive");
+
+        try {
+            cWriter.append(mChassis.getData() + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
 
     }
@@ -87,5 +98,18 @@ public class RunFieldCentricSwerve extends CommandBase {
     public boolean isFinished() {
         return false;
     }
+
+    @Override
+    public void end(boolean isFinished) {
+        try {
+            cWriter.flush();
+            cWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Writer closed");
+    }
+
 }
+
 

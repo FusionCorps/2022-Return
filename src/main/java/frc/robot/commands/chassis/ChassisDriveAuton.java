@@ -6,6 +6,8 @@ import frc.robot.subsystems.Chassis;
 
 public class ChassisDriveAuton extends CommandBase {
 
+    // TODO: Make command that aligns wheels w/o movement overall
+
     Chassis mChassis;
 
     double mFwdSpeed;
@@ -16,6 +18,9 @@ public class ChassisDriveAuton extends CommandBase {
     private Timer timer = new Timer();
 
     public ChassisDriveAuton(Chassis chassis, double fwdSpeed, double strSpeed, double rotSpeed, double time) {
+
+        mChassis = chassis;
+
         mFwdSpeed = fwdSpeed;
         mStrSpeed = strSpeed;
         mRotSpeed = rotSpeed;
@@ -28,12 +33,15 @@ public class ChassisDriveAuton extends CommandBase {
     public void initialize() {
         timer.reset();
         timer.start();
+
+        mChassis.solveAngles(-mFwdSpeed, mStrSpeed, mRotSpeed);
+
     }
 
     @Override
     public void execute() {
 
-        mChassis.runSwerve(mFwdSpeed, mStrSpeed, mRotSpeed);
+        mChassis.runSwerve(-mFwdSpeed, mStrSpeed, mRotSpeed);
 
     }
 

@@ -3,8 +3,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
+import frc.robot.commands.chassis.FieldCentricRecord;
 import frc.robot.commands.chassis.ResetGyro;
 import frc.robot.commands.chassis.RunFieldCentricSwerve;
+import frc.robot.commands.chassis.ToggleAim;
 import frc.robot.subsystems.Chassis;
 
 public class RobotContainer {
@@ -32,8 +34,11 @@ public class RobotContainer {
                 .whenPressed(new ResetGyro(mChassis));
         new JoystickButton(mController, XboxController.Button.kA.value)
                 .whileHeld(new ZeroAxes(mChassis));
-
+        new JoystickButton(mController, XboxController.Button.kBumperRight.value)
+                .whenPressed(new ToggleAim(mChassis));
     }
+
+
 
 
 
