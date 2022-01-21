@@ -4,7 +4,12 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Chassis;
 
-public class ChassisDriveAuton extends CommandBase {
+import static frc.robot.RobotContainer.mController;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+import static java.lang.StrictMath.PI;
+
+public class ChassisDriveAutonFC extends CommandBase {
 
     // TODO: Make command that aligns wheels w/o movement overall
 
@@ -17,9 +22,11 @@ public class ChassisDriveAuton extends CommandBase {
     double mRotSpeed;
     double mTime;
 
+    public double angle = mChassis.ahrs.getAngle();
+
     private Timer timer = new Timer();
 
-    public ChassisDriveAuton(Chassis chassis, double fwdSpeed, double strSpeed, double rotSpeed, double time) {
+    public ChassisDriveAutonFC(Chassis chassis, double fwdSpeed, double strSpeed, double rotSpeed, double time) {
 
         mChassis = chassis;
 
@@ -36,7 +43,7 @@ public class ChassisDriveAuton extends CommandBase {
         timer.reset();
         timer.start();
 
-        mChassis.solveAngles(-mFwdSpeed, -mStrSpeed, mRotSpeed);
+        mChassis.solveAngles(-mFwdSpeed, mStrSpeed, mRotSpeed);
 
 
     }
@@ -44,7 +51,11 @@ public class ChassisDriveAuton extends CommandBase {
     @Override
     public void execute() {
 
-        mChassis.runSwerve(-mFwdSpeed, mStrSpeed, mRotSpeed);
+        angle = -(mChassis.ahrs.getAngle() % 360);
+
+        mChassis.runSwerve(-mFwdSpeed*cos(angle/360*(2*PI)) + mStrSpeed*sin(angle/360*(2*PI)),
+                mFwdSpeed*sin(angle/360*(2*PI)) - mStrSpeed*cos(angle/360*(2*PI)),
+                mRotSpeed);
 
     }
 
@@ -59,3 +70,4 @@ public class ChassisDriveAuton extends CommandBase {
     }
 
 }
+

@@ -35,6 +35,10 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
+    mChassis.comboFR.zero();
+    mChassis.comboBR.zero();
+    mChassis.comboFL.zero();
+    mChassis.comboBL.zero();
 
   }
 

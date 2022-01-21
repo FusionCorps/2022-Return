@@ -144,10 +144,10 @@ public class Chassis extends SubsystemBase {
         }
 
 
-        this.comboFL.passArgs(0, getAngle(fwd, str, rot, 0));
-        this.comboBL.passArgs(0, getAngle(fwd, str, rot, 1));
-        this.comboFR.passArgs(0, getAngle(fwd, str, rot, 2));
-        this.comboBR.passArgs(0, getAngle(fwd, str, rot, 3));
+        this.comboFL.passArgs(0.03, getAngle(fwd, str, rot, 0));
+        this.comboBL.passArgs(0.03, getAngle(fwd, str, rot, 1));
+        this.comboFR.passArgs(0.03, getAngle(fwd, str, rot, 2));
+        this.comboBR.passArgs(0.03, getAngle(fwd, str, rot, 3));
 
 
 
