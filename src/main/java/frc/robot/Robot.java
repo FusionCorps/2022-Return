@@ -12,6 +12,8 @@ import frc.robot.commands.auton.AutonBasic;
 import frc.robot.commands.chassis.ChassisDriveAuton;
 
 
+import java.io.IOException;
+
 import static frc.robot.RobotContainer.mChassis;
 
 /**
@@ -56,6 +58,13 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
+//    try {
+//      mChassis.chassisWriter.append(mChassis.getGyroData() + "\n");
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

@@ -27,7 +27,7 @@ public class RobotContainer {
         configureButtonBindings();
 
 
-//        mChassis.setDefaultCommand(new RunFieldCentricSwerve(mChassis));
+        mChassis.setDefaultCommand(new RunFieldCentricSwerve(mChassis));
         mIntake.setDefaultCommand(new IntakeControl(mIntake));
 
     }
@@ -41,8 +41,6 @@ public class RobotContainer {
                 .whileHeld(new ZeroAxes(mChassis));
         new JoystickButton(mController, XboxController.Button.kBumperRight.value)
                 .whenPressed(new ToggleAim(mChassis));
-        new JoystickButton(mController, XboxController.Button.kX.value)
-                .whenPressed(new AutonBasic(mChassis));
     }
 
 

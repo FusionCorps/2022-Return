@@ -12,11 +12,16 @@ import frc.robot.math.SwerveCalcs;
 import frc.robot.modules.SwerveCombo;
 
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import static frc.robot.math.SwerveCalcs.*;
 import static java.lang.Double.max;
 
 public class Chassis extends SubsystemBase {
-    
+
+    public FileWriter chassisWriter;
 
     public boolean aiming = false;
 
@@ -48,6 +53,14 @@ public class Chassis extends SubsystemBase {
 
 
     public Chassis() {
+
+        try {
+            chassisWriter = new FileWriter(new File("/home/lvuser/accelerations.csv"));
+            chassisWriter.append("accelX, accelY, accelZ, pitch, roll, yaw \n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         ahrs = new AHRS(SPI.Port.kMXP);
         ahrs.calibrate();
 
@@ -71,6 +84,19 @@ public class Chassis extends SubsystemBase {
 
     public void resetHeading() {
         ahrs.reset();
+    }
+
+    public String getGyroData() {
+        String retString = "";
+        retString += ahrs.getRawAccelX() + ",";
+        retString += ahrs.getRawAccelY() + ",";
+        retString += ahrs.getRawAccelZ() + ",";
+        retString += ahrs.getPitch() + ",";
+        retString += ahrs.getRoll() + ",";
+        retString += ahrs.getYaw();
+
+        return retString;
+
     }
     
 

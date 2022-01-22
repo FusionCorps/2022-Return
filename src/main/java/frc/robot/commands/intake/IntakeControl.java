@@ -23,9 +23,9 @@ public class IntakeControl extends CommandBase {
         mIntake.runIntake(indexLimit.calculate(
                 (mController.getTriggerAxis(GenericHID.Hand.kRight) - mController.getTriggerAxis(GenericHID.Hand.kLeft))
                         * Constants.INDEXER_TARGET));
-        System.out.println(indexLimit.calculate(
-                (mController.getTriggerAxis(GenericHID.Hand.kRight) - mController.getTriggerAxis(GenericHID.Hand.kLeft))
-                        * Constants.INDEXER_TARGET));
+//        System.out.println(indexLimit.calculate(
+//                (mController.getTriggerAxis(GenericHID.Hand.kRight) - mController.getTriggerAxis(GenericHID.Hand.kLeft))
+//                        * Constants.INDEXER_TARGET));
     }
 
     @Override
