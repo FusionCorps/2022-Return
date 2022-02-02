@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ec36303-2acc-4cb2-843f-fc2e49cad88d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/auton/AutonTransition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/auton/AutonBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/auton/AutonBasic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/auton/AutonTransition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/auton/AutonTransition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/chassis/ChassisDriveAuton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/chassis/ChassisDriveAuton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -62,6 +62,11 @@ public class AutonTransition extends CommandBase {
     public boolean isFinished() {
         return  timer.hasPeriodPassed(mTime);
     }
-    
+
+    @Override
+    public void end(boolean interrupted) {
+        mChassis.runSwerve(fwd2, str2, rot2);
+    }
+
 
 }

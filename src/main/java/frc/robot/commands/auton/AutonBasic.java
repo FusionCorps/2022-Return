@@ -19,9 +19,10 @@ public class AutonBasic extends SequentialCommandGroup {
 
         addCommands(new ResetGyro(mChassis),
                 new ChassisDriveAuton(mChassis, 0.01, 0.0, 0.0, 0.1),
-                new ChassisDriveAuton(mChassis, 0.8, 0.0, 0.0, 0.4),
-                new ChassisDriveAuton(mChassis, 0.0, -0.05, 0.0, 0.05),
-                new ChassisDriveAutonFC(mChassis, -0.1, 1.0, 0.6, 1.0));
+                new ChassisDriveAuton(mChassis, 0.4, 0.0, 0.0, 0.4),
+                new AutonTransition(mChassis, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.5),
+                new ChassisDriveAuton(mChassis, 0.0, 0.4, 0.0, 0.4)
+        );
 
 //        addCommands(new ResetGyro(mChassis),
 //                new ChassisDriveAutonFC(mChassis, 0.05, 0.0, 0.0, 0.05),
