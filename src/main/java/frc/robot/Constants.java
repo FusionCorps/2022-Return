@@ -62,6 +62,9 @@ public class Constants {
 
     public static class Shooter {
         public static int SHOOTER_ID;
+
+        public static double SHOOTER_LOWER_VEL = 1750.0;
+        public static double SHOOTER_UPPER_VEL = 2250.0;
     }
 
 }
