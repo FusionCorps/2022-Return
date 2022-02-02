@@ -55,4 +55,13 @@ public class Constants {
 
     }
 
+    public static class Indexer {
+        public static int INDEXER_ID;
+        public static int IR_PORT;
+    }
+
+    public static class Shooter {
+        public static int SHOOTER_ID;
+    }
+
 }
