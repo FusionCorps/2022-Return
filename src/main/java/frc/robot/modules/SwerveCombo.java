@@ -58,12 +58,21 @@ public class SwerveCombo {
 
         this.mPosition = position;
 
+        x_exp = 0;
+        y_exp = 0;
 
     }
 
-    public void updateData() {
-        x_exp += driveMotor.getSelectedSensorVelocity()*cos(coder.getAbsolutePosition()/360*2*PI + 1.32581766);
-        y_exp -= driveMotor.getSelectedSensorVelocity()*sin(coder.getAbsolutePosition()/360*2*PI + 1.32581766);
+//    public void updateData() {
+//        x_exp += driveMotor.getSelectedSensorVelocity()*cos(coder.getAbsolutePosition()/360*2*PI + 1.32581766 - PI/2);
+//        y_exp -= driveMotor.getSelectedSensorVelocity()*sin(coder.getAbsolutePosition()/360*2*PI + 1.32581766 - PI/2);
+//    }
+
+    public void updateData(double heading) {
+        x_exp -= driveMotor.getSelectedSensorVelocity()*sin((coder.getAbsolutePosition()-180+heading)/360*2*PI);
+        y_exp += driveMotor.getSelectedSensorVelocity()*cos((coder.getAbsolutePosition()-180+heading)/360*2*PI);
+
+        System.out.println(coder.getAbsolutePosition()-180+heading);
     }
 
     public String getComboData() {
@@ -78,7 +87,6 @@ public class SwerveCombo {
 
     public void passArgs(double speed, double angle) {
 
-        updateData();
 
         new Constants();
 

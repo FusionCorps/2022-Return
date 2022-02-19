@@ -23,12 +23,12 @@ public class FieldCentricRecord extends CommandBase {
         mChassis = chassis;
         this.addRequirements(mChassis);
 
-        try {
-            String name = "recording" + System.currentTimeMillis();
-            cWriter = new FileWriter(new File("/home/lvuser/" + name +".csv"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            String name = "recording" + System.currentTimeMillis();
+//            cWriter = new FileWriter(new File("/home/lvuser/" + name +".csv"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
@@ -60,6 +60,7 @@ public class FieldCentricRecord extends CommandBase {
     public void execute() {
 
         mChassis.feedAll();
+        mChassis.updateCombos();
 
         angle = -(mChassis.ahrs.getAngle() % 360);
 

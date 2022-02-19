@@ -202,4 +202,12 @@ public class Chassis extends SubsystemBase {
     }
 
 
+    public void updateCombos() {
+        comboFL.updateData(ahrs.getAngle());
+        comboBL.updateData(ahrs.getAngle());
+        comboFR.updateData(ahrs.getAngle());
+        comboBR.updateData(ahrs.getAngle());
+    }
+
+
 }
