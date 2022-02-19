@@ -88,12 +88,11 @@ public class Chassis extends SubsystemBase {
 
     public String getGyroData() {
         String retString = "";
-        retString += ahrs.getRawAccelX() + ",";
-        retString += ahrs.getRawAccelY() + ",";
-        retString += ahrs.getRawAccelZ() + ",";
-        retString += ahrs.getPitch() + ",";
-        retString += ahrs.getRoll() + ",";
-        retString += ahrs.getYaw();
+        retString += ahrs.getDisplacementX() + ",";
+        retString += ahrs.getDisplacementY() + ",";
+        retString += ahrs.getDisplacementZ();
+
+
 
         return retString;
 
@@ -182,14 +181,11 @@ public class Chassis extends SubsystemBase {
     public String getData() {
         String ret_string = "";
 
-        ret_string += drive0.getMotorOutputPercent() + ",";
-        ret_string += drive1.getMotorOutputPercent() + ",";
-        ret_string += drive2.getMotorOutputPercent() + ",";
-        ret_string += drive3.getMotorOutputPercent() + ",";
-        ret_string += axis0.getMotorOutputPercent() + ",";
-        ret_string += axis1.getMotorOutputPercent() + ",";
-        ret_string += axis2.getMotorOutputPercent() + ",";
-        ret_string += axis3.getMotorOutputPercent();
+        ret_string += comboFL.getComboData() + ",";
+        ret_string += comboBL.getComboData() + ",";
+        ret_string += comboFR.getComboData() + ",";
+        ret_string += comboBR.getComboData();
+
 
         return  ret_string;
     }

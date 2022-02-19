@@ -8,8 +8,7 @@ import frc.robot.Constants;
 import frc.robot.math.SwerveCalcs;
 
 import static frc.robot.Constants.*;
-import static java.lang.Math.PI;
-import static java.lang.Math.abs;
+import static java.lang.Math.*;
 
 public class SwerveCombo {
 
@@ -19,6 +18,9 @@ public class SwerveCombo {
     double jankCode;
     double absEncDeg;
     CANCoder coder;
+
+    double x_exp;
+    double y_exp;
 
     // Note: Phoenix Lib init knocks motors out of alignment
     // Wait until you see that on the console before running, else realign
@@ -59,9 +61,24 @@ public class SwerveCombo {
 
     }
 
+    public void updateData() {
+        x_exp += driveMotor.getSelectedSensorVelocity()*cos(coder.getAbsolutePosition()/360*2*PI + 1.32581766);
+        y_exp -= driveMotor.getSelectedSensorVelocity()*sin(coder.getAbsolutePosition()/360*2*PI + 1.32581766);
+    }
+
+    public String getComboData() {
+        String ret_string = "";
+
+        ret_string += x_exp + ",";
+        ret_string += y_exp;
+
+        return ret_string;
+    }
+
 
     public void passArgs(double speed, double angle) {
 
+        updateData();
 
         new Constants();
 

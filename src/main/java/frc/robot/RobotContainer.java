@@ -27,7 +27,7 @@ public class RobotContainer {
         configureButtonBindings();
 
 
-        mChassis.setDefaultCommand(new RunFieldCentricSwerve(mChassis));
+        mChassis.setDefaultCommand(new FieldCentricRecord(mChassis));
         mIntake.setDefaultCommand(new IntakeControl(mIntake));
 
     }

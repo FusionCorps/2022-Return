@@ -24,7 +24,8 @@ public class FieldCentricRecord extends CommandBase {
         this.addRequirements(mChassis);
 
         try {
-            cWriter = new FileWriter(new File("/home/lvuser/recording.csv"));
+            String name = "recording" + System.currentTimeMillis();
+            cWriter = new FileWriter(new File("/home/lvuser/" + name +".csv"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,7 +48,8 @@ public class FieldCentricRecord extends CommandBase {
         mChassis.comboBL.zero();
 
         try {
-            cWriter = new FileWriter("/home/lvuser/recording.csv");
+            String name = "recording" + System.currentTimeMillis();
+            cWriter = new FileWriter(new File("/home/lvuser/" + name +".csv"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,9 +65,9 @@ public class FieldCentricRecord extends CommandBase {
 
 
 
-        double axis0 = responseCurve.calculate(mController.getRawAxis(0));
-        double axis1 = responseCurve.calculate(mController.getRawAxis(1));
-        double axis4 = responseCurve.calculate(mController.getRawAxis(4));
+        double axis0 = mController.getRawAxis(0);
+        double axis1 = mController.getRawAxis(1);
+        double axis4 = mController.getRawAxis(4);
 
 
 

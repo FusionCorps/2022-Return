@@ -42,6 +42,8 @@ public class Robot extends TimedRobot {
     mChassis.comboFL.zero();
     mChassis.comboBL.zero();
 
+    mChassis.ahrs.calibrate();
+
   }
 
   /**
